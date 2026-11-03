@@ -1,93 +1,211 @@
 <!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Abogados Mudos — Sala del tribunal</title>
 <style>
-:root{--bg:#14291f;--wood:#2a1a12;--paper:#e6e9e4;--ink:#14211c;--a:#2457a6;--b:#c1272d;--brass:#c9a227}
+:root{--wood:#2a1a10;--wood2:#3b2517;--paper:#e8ebe6;--ink:#14211c;--a:#2f6fd6;--b:#d33a40;--brass:#d4a82a;--brass2:#9a7414}
 *{box-sizing:border-box;margin:0}
-body{background:radial-gradient(circle at 50% 30%,#1d3a2d,var(--bg));color:var(--paper);font:20px/1.3 system-ui,sans-serif;height:100vh;display:grid;grid-template-rows:auto 1fr;overflow:hidden}
+body{height:100vh;overflow:hidden;display:grid;grid-template-rows:auto 1fr;color:#f2f0ea;font:18px/1.3 system-ui,sans-serif;
+ background:linear-gradient(#0000 55%,#0008),repeating-linear-gradient(90deg,var(--wood2) 0 78px,#2c1a0e 78px 82px),var(--wood)}
+body::before{content:"";position:fixed;left:0;right:0;bottom:0;height:24vh;z-index:-1;border-top:6px solid var(--brass2);
+ background:conic-gradient(#1c1c20 25%,#2b2b31 0 50%,#1c1c20 0 75%,#2b2b31 0) 0 0/84px 84px}
 h1,h2,.slab{font-family:Rockwell,"Roboto Slab",Georgia,serif;font-weight:700}
-#bars{display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:center;padding:14px 22px;background:var(--wood);border-bottom:4px solid var(--brass)}
-.bar{background:#0006;border-radius:6px;height:34px;position:relative;overflow:hidden;border:2px solid #0008}
+#bars{display:grid;grid-template-columns:1fr 230px 1fr;gap:18px;align-items:center;padding:10px 20px;background:linear-gradient(#1a0f08,#2a1a10);border-bottom:5px solid var(--brass)}
+.tb small{display:flex;justify-content:space-between;font-size:14px;opacity:.85;margin-top:3px}
+.tb h2{font-size:17px;letter-spacing:.04em}
+.bar{height:30px;border:3px solid #000a;border-radius:4px;background:#0009;position:relative;display:flex;overflow:hidden}
+#bB .bar,.tb.r .bar{justify-content:flex-end}
 .bar i{display:block;height:100%;width:0;transition:width 1.2s cubic-bezier(.3,1.4,.5,1)}
-#bA i{background:var(--a)}#bB i{background:var(--b)}
-.bar span{position:absolute;inset:0;display:grid;place-items:center;font-weight:700;text-shadow:0 1px 3px #000}
-#mid{text-align:center}#mid b{font-size:30px}
-main{display:grid;grid-template-columns:230px 1fr 230px;gap:18px;padding:18px 22px;min-height:0}
-.team{display:flex;flex-direction:column;gap:10px}.team h2{font-size:22px}
-.lawyer{background:var(--paper);color:var(--ink);border-radius:6px;padding:10px 12px;border-left:10px solid;display:flex;gap:10px;align-items:center;transition:transform .2s}
-#tA .lawyer{border-color:var(--a)}#tB .lawyer{border-color:var(--b)}
-.lawyer small{display:block;opacity:.65;font-size:14px}.lawyer em{margin-left:auto;font-style:normal}
-.lawyer.done{transform:translateX(6px);outline:3px solid var(--brass)}
-#stage{display:grid;grid-template-rows:auto 1fr;gap:14px;min-height:0;position:relative}
-#judge{text-align:center;font-size:84px;line-height:1}#judge.hit{animation:hit .5s}
-@keyframes hit{30%{transform:translateY(24px) rotate(-14deg)}}
-.panel{background:var(--paper);color:var(--ink);border-radius:8px;padding:26px 30px;display:flex;flex-direction:column;gap:18px;min-height:0}
-.panel h2{font-size:34px;line-height:1.15}
-#tbar{height:12px;background:#0002;border-radius:6px;overflow:hidden}#tbar i{display:block;height:100%;background:var(--brass);width:100%}
-#opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.opt{padding:16px 18px;border-radius:6px;color:#fff;font-weight:700;font-size:26px;display:flex;gap:12px;align-items:center}
+#bA i{background:repeating-linear-gradient(90deg,var(--a) 0 14px,#1c4a9a 14px 18px)}
+#bB i{background:repeating-linear-gradient(90deg,var(--b) 0 14px,#8f2328 14px 18px)}
+.bar::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#fff4 1px,#0000 1px) 0 0/10% 100%;pointer-events:none}
+.bar b{position:absolute;inset:0;display:grid;place-items:center;text-shadow:0 1px 3px #000;z-index:2}
+#mid{text-align:center}#mid .slab{font-size:22px;color:var(--brass)}#rd{font-size:14px}
+main{display:grid;grid-template-columns:250px 1fr 250px;gap:10px;padding:8px 16px 14px;min-height:0}
+.team{display:flex;flex-direction:column;justify-content:space-around;min-height:0}
+.flag{text-align:center;padding:5px;border-radius:4px;font-size:16px;letter-spacing:.06em;border-bottom:4px solid #0006}
+#tA .flag{background:var(--a)}#tB .flag{background:var(--b)}
+.pl{position:relative;display:flex;align-items:center;gap:8px;font-size:15px}
+#tB .pl{flex-direction:row-reverse;text-align:right}
+.nm{background:#0007;border:1px solid var(--brass2);border-radius:4px;padding:3px 8px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis}
+.nm small{display:block;opacity:.7;font-size:12px}
+.doll{height:min(10.5vh,86px);flex:none;overflow:visible}.arm{opacity:0}
+.pl.done .arm,.pl.ok .arm{opacity:1}
+.pl.ok .bod{animation:hop .5s 3}.pl.bad .bod{animation:shake .3s 4}
+@keyframes hop{50%{transform:translateY(-9px)}}@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.pl.ok::after,.pl.bad::after{position:absolute;top:-2px;left:30px;font:700 11px Rockwell,Georgia,serif;padding:1px 5px;border:2px solid;border-radius:3px;transform:rotate(-9deg);background:#000b}
+#tB .pl.ok::after,#tB .pl.bad::after{left:auto;right:30px}
+.pl.ok::after{content:"INOCENTE";color:#5fe08c}.pl.bad::after{content:"CULPABLE";color:#ff6b6b}
+#stage{display:flex;flex-direction:column;align-items:center;gap:8px;min-height:0;position:relative}
+#bench{position:relative;width:100%;display:flex;justify-content:center;height:min(36vh,300px)}
+#judgeSvg{height:100%;filter:drop-shadow(0 8px 10px #000a)}#judgeSvg *{transform-box:fill-box}
+#bubble{position:absolute;left:calc(50% + min(15vh,125px));top:8%;max-width:240px;background:var(--paper);color:var(--ink);padding:10px 14px;border-radius:14px 14px 14px 2px;font:italic 700 17px Georgia,serif;box-shadow:0 4px 10px #0008}
+#plate{position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);background:linear-gradient(var(--brass),var(--brass2));color:#2a1a10;padding:2px 16px;border-radius:3px;font:700 13px Rockwell,Georgia,serif;letter-spacing:.14em;white-space:nowrap}
+.m-h,.m-a{display:none}.mood-happy .m-n,.mood-angry .m-n{display:none}.mood-happy .m-h,.mood-angry .m-a{display:block}
+.mood-angry .brL{transform:rotate(18deg)}.mood-angry .brR{transform:rotate(-18deg)}
+.mood-think .brL,.mood-think .brR,.mood-happy .brL,.mood-happy .brR{transform:translateY(-5px)}
+#gav{transform-origin:100% 100%}.slam #gav{animation:slam .6s}
+@keyframes slam{30%{transform:rotate(-60deg)}55%{transform:rotate(10deg)}}
+.panel{background:repeating-linear-gradient(#0000 0 27px,#0001 27px 28px),var(--paper);color:var(--ink);border-radius:6px;padding:14px 20px;display:flex;flex-direction:column;gap:10px;width:100%;max-width:800px;min-height:0;overflow:auto;box-shadow:0 8px 22px #000a;border-top:6px solid var(--brass2)}
+.panel h2{font-size:23px;line-height:1.15}
+.qtop{display:flex;align-items:center;gap:12px}.qtop>div:first-child{flex:1;font-size:14px}
+#ring{position:relative;width:54px;height:54px;flex:none}#ring svg{transform:rotate(-90deg)}#ring b{position:absolute;inset:0;display:grid;place-items:center;font:700 20px Rockwell,Georgia,serif}
+#ringc{transition:stroke-dashoffset linear}
+#opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.opt{padding:10px 14px;border-radius:5px;color:#fff;font-weight:700;font-size:18px;box-shadow:0 3px 0 #0005}
 .opt:nth-child(1){background:#c1272d}.opt:nth-child(2){background:#2457a6}.opt:nth-child(3){background:#9a6b00}.opt:nth-child(4){background:#2e7d4f}
-.opt.no{opacity:.25}.opt.yes{outline:6px solid var(--ink)}
-#res{font-size:26px;font-weight:700;text-align:center;min-height:36px}
-#code{font-size:110px;letter-spacing:.12em;color:var(--brass)}
-#toast{position:absolute;left:50%;top:90px;transform:translateX(-50%);background:var(--brass);color:var(--ink);padding:10px 24px;border-radius:6px;font-size:28px;font-weight:700;opacity:0;transition:opacity .3s;pointer-events:none}
-#toast.on{opacity:1}
+.opt.no{opacity:.25}.opt.yes{outline:5px solid var(--ink)}
+#res{font:700 20px Rockwell,Georgia,serif;text-align:center;min-height:26px}
+.plaque{align-self:center;background:linear-gradient(var(--brass),var(--brass2));color:#2a1a10;padding:2px 28px;border-radius:5px;font:700 70px/1.1 Rockwell,Georgia,serif;letter-spacing:.14em;box-shadow:inset 0 0 0 3px #fff5,0 4px 0 #0005}
+.chips{display:flex;flex-wrap:wrap;gap:6px;min-height:28px}.chips span{padding:2px 10px;border-radius:12px;color:#fff;font-size:14px}
+.chips .A{background:var(--a)}.chips .B{background:var(--b)}
+button{font:700 17px system-ui;padding:10px 20px;border:0;border-radius:6px;background:var(--b);color:#fff;cursor:pointer}
+button.alt{background:var(--ink)}button.gold{background:var(--brass);color:#2a1a10}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+#stamp{position:absolute;left:50%;top:34%;z-index:5;pointer-events:none;opacity:0;text-align:center;border:7px solid;border-radius:10px;padding:2px 26px;background:#fff9;color:#c1272d;font:900 46px Rockwell,Georgia,serif;transform:translate(-50%,-50%) rotate(-8deg)}
+#stamp small{display:block;font:700 18px system-ui;color:var(--ink)}
+#stamp.on{animation:stampIn 2.2s}@keyframes stampIn{0%{opacity:0;transform:translate(-50%,-50%) rotate(-8deg) scale(3)}12%{opacity:1;transform:translate(-50%,-50%) rotate(-8deg) scale(1)}85%{opacity:1}100%{opacity:0}}
 .hide{display:none!important}
-button{font:inherit;padding:14px 30px;border:0;border-radius:6px;background:var(--b);color:#fff;font-weight:700;cursor:pointer}
+#ed{position:fixed;inset:0;background:#000b;z-index:20;display:grid;place-items:center}
+#edc{width:min(1040px,95vw);height:min(86vh,720px);background:var(--paper);color:var(--ink);border-radius:8px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto 1fr auto;border-top:8px solid var(--brass2);overflow:hidden}
+#edc header{grid-column:1/3;display:flex;justify-content:space-between;align-items:center;padding:10px 18px;border-bottom:2px solid #0002}
+#edc header h2{font-size:24px}
+#ql{list-style:none;overflow:auto;padding:10px;display:flex;flex-direction:column;gap:6px;border-right:2px solid #0002}
+#ql li{display:flex;gap:8px;align-items:center;background:#fff;border:2px solid #0002;border-radius:6px;padding:6px 8px;font-size:15px}
+#ql li.sel{border-color:var(--b)}#ql li>b{font:700 18px Rockwell,Georgia,serif;width:28px;text-align:center}#ql li>div{flex:1;min-width:0}
+#ql small{display:block;color:#2e7d4f;font-weight:700}#ql .emp{border:2px dashed #0004;justify-content:center;padding:20px}
+#ql button{padding:4px 9px;font-size:15px}.chip{background:var(--ink);color:#fff;border-radius:10px;padding:0 8px;font-size:12px;margin-right:4px}
+#fm{padding:12px 16px;display:flex;flex-direction:column;gap:8px;overflow:auto}
+#fm label{font-weight:700;font-size:14px}
+#fm input[type=text],#fm select,#fm textarea,#fj{width:100%;font:16px system-ui;padding:8px;border:2px solid #0003;border-radius:5px;background:#fff;color:var(--ink)}
+#fm textarea{height:70px;resize:vertical}#fj{height:90px;font:12px ui-monospace,Consolas,monospace}
+.orow{display:flex;align-items:center;gap:8px}.orow input[type=radio]{width:22px;height:22px;accent-color:#2e7d4f}
+.orow .k{width:26px;height:26px;border-radius:5px;color:#fff;display:grid;place-items:center;flex:none}
+.orow:nth-of-type(1) .k{background:#c1272d}.orow:nth-of-type(2) .k{background:#2457a6}.orow:nth-of-type(3) .k{background:#9a6b00}.orow:nth-of-type(4) .k{background:#2e7d4f}
+#edc footer{grid-column:1/3;padding:8px 18px;border-top:2px solid #0002;font-weight:700;display:flex;justify-content:space-between;gap:10px}
+@media (max-width:900px){#edc{grid-template-columns:1fr;grid-template-rows:auto 1fr 1fr auto}#edc header,#edc footer{grid-column:1}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style></head><body>
 <div id="bars">
- <div class="bar" id="bA"><i></i><span>Equipo Azul: 0 años</span></div>
- <div id="mid"><b class="slab">Condenómetro</b><div id="rd"></div></div>
- <div class="bar" id="bB"><i></i><span>Equipo Rojo: 0 años</span></div>
+ <div class="tb" id="bA"><h2 class="slab">LA DEFENSA · AZUL</h2><div class="bar"><i></i><b>0 años</b></div><small><span>⛓ condena</span><span class="zn">Libertad condicional</span></small></div>
+ <div id="mid"><div class="slab">CONDENÓMETRO</div><div id="rd">Sala abierta</div></div>
+ <div class="tb r" id="bB"><h2 class="slab" style="text-align:right">LA FISCALÍA · ROJO</h2><div class="bar"><i></i><b>0 años</b></div><small><span class="zn">Libertad condicional</span><span>condena ⛓</span></small></div>
 </div>
 <main>
  <div class="team" id="tA"></div>
  <div id="stage">
-  <div id="judge">⚖️</div>
-  <div id="toast"></div>
-  <div class="panel" id="lobby">
-   <h2>Entra desde tu celular a <u id="url"></u></h2>
-   <div>Código de sala</div><div id="code" class="slab">····</div>
-   <button id="start">Abrir la audiencia</button>
+  <div id="bench">
+   <svg id="judgeSvg" viewBox="0 0 200 200" class="mood-neutral">
+    <path d="M36 200Q36 118 100 118T164 200z" fill="#15151a"/><path d="M84 122l16 40 16-40z" fill="#fff"/><path d="M90 130h20M92 140h16M95 150h10" stroke="#ccd" stroke-width="2"/>
+    <g fill="#f4f4f4" stroke="#d6d6dc" stroke-width="1.5"><circle cx="62" cy="72" r="17"/><circle cx="138" cy="72" r="17"/><circle cx="66" cy="100" r="14"/><circle cx="134" cy="100" r="14"/></g>
+    <circle cx="100" cy="88" r="36" fill="#f1c9a0"/>
+    <g fill="#f4f4f4" stroke="#d6d6dc" stroke-width="1.5"><circle cx="72" cy="54" r="16"/><circle cx="100" cy="44" r="19"/><circle cx="128" cy="54" r="16"/></g>
+    <circle cx="87" cy="88" r="4.5" fill="#14211c"/><circle cx="113" cy="88" r="4.5" fill="#14211c"/>
+    <path class="brL" d="M76 76h20" stroke="#555" stroke-width="4.5" stroke-linecap="round"/><path class="brR" d="M104 76h20" stroke="#555" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M97 92q-4 10 3 10" stroke="#c9976a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <circle cx="76" cy="100" r="6" fill="#f08a7a" opacity=".45"/><circle cx="124" cy="100" r="6" fill="#f08a7a" opacity=".45"/>
+    <path class="m-n" d="M88 110h24" stroke="#14211c" stroke-width="3.5" stroke-linecap="round"/>
+    <path class="m-h" d="M86 106q14 17 28 0" stroke="#14211c" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+    <path class="m-a" d="M86 116q14-15 28 0" stroke="#14211c" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+    <rect x="0" y="150" width="200" height="50" fill="#5b3a22"/><rect x="0" y="150" width="200" height="8" fill="#8a5a2b"/>
+    <rect x="10" y="164" width="180" height="30" rx="3" fill="#4a2e1a" stroke="#8a5a2b" stroke-width="2"/><text x="100" y="188" text-anchor="middle" font-size="26">⚖️</text>
+    <g id="gav"><rect x="140" y="130" width="36" height="17" rx="4" fill="#9a6a38"/><rect x="154" y="144" width="7" height="12" fill="#6b4423"/></g>
+   </svg>
+   <div id="bubble">Se abre la audiencia. Tomen asiento.</div><div id="plate">SU SEÑORÍA</div>
   </div>
-  <div class="panel hide" id="q"><div id="cat"></div><div id="tbar"><i></i></div><h2 id="qt"></h2><div id="opts"></div><div id="res"></div></div>
-  <div class="panel hide" id="end"><h2 id="win"></h2><div id="sub"></div></div>
+  <div id="stamp"></div>
+  <div class="panel" id="lobby">
+   <div class="row"><div style="flex:1">Entra desde tu celular a <b id="url"></b> y escribe el código:</div></div>
+   <div class="plaque" id="code">····</div>
+   <div class="chips" id="chips"></div>
+   <div class="row"><button class="gold" id="start">⚖️ Abrir la audiencia</button><button class="alt" id="edit">📂 Expediente de preguntas (<span id="qn">0</span>)</button></div>
+  </div>
+  <div class="panel hide" id="q"><div class="qtop"><div id="cat"></div><div id="ring"><svg width="54" height="54"><circle cx="27" cy="27" r="22" fill="none" stroke="#0002" stroke-width="6"/><circle id="ringc" cx="27" cy="27" r="22" fill="none" stroke="#9a7414" stroke-width="6" stroke-dasharray="138.2" stroke-dashoffset="0"/></svg><b id="sec"></b></div></div><h2 id="qt"></h2><div id="opts"></div><div id="res"></div></div>
+  <div class="panel hide" id="end"><div class="plaque" id="win" style="font-size:38px;text-align:center"></div><div id="sub" style="text-align:center;font-weight:700"></div><div class="row" style="justify-content:center"><button class="gold" onclick="location.reload()">Nueva audiencia</button></div></div>
  </div>
  <div class="team" id="tB"></div>
 </main>
+<div id="ed" class="hide"><div id="edc">
+ <header><h2 class="slab">📂 Expediente de preguntas</h2><button class="alt" id="edx">Cerrar ✕</button></header>
+ <ul id="ql"></ul>
+ <div id="fm">
+  <label>Categoría <select id="fc"></select></label>
+  <label>Pregunta <textarea id="fq" placeholder="Escribe la pregunta…"></textarea></label>
+  <label>Opciones (marca el círculo de la correcta)</label>
+  <div class="orow"><input type="radio" name="fr" value="0" checked><span class="k">▲</span><input type="text" id="fo0" placeholder="Opción 1"></div>
+  <div class="orow"><input type="radio" name="fr" value="1"><span class="k">◆</span><input type="text" id="fo1" placeholder="Opción 2"></div>
+  <div class="orow"><input type="radio" name="fr" value="2"><span class="k">●</span><input type="text" id="fo2" placeholder="Opción 3 (opcional)"></div>
+  <div class="orow"><input type="radio" name="fr" value="3"><span class="k">■</span><input type="text" id="fo3" placeholder="Opción 4 (opcional)"></div>
+  <div class="row"><button class="gold" id="fadd">➕ Agregar pregunta</button><button class="alt hide" id="fcan">Cancelar edición</button><button class="alt" id="fpack">Cargar pack de ejemplo</button></div>
+  <details><summary style="cursor:pointer;font-weight:700">Avanzado: importar / exportar JSON</summary>
+   <textarea id="fj" spellcheck="false"></textarea><div class="row" style="margin-top:6px"><button class="alt" id="jexp">Mostrar mi JSON</button><button class="alt" id="jimp">Cargar este JSON</button></div></details>
+ </div>
+ <footer><span id="qcount"></span><span id="qmsg"></span></footer>
+</div></div>
 <script src="/socket.io/socket.io.js"></script>
 <script>
 const s=io(),$=id=>document.getElementById(id),RN={principal:['⚖️','Abogado Principal'],investigador:['🔍','Investigador'],perito:['🧪','Perito'],procurador:['📎','Procurador'],escribano:['✒️','Escribano']};
-const FX={protesto:'¡Protesto, Su Señoría!',pista:'Pista Anónima',dictamen:'Dictamen Irrefutable',apelacion:'Recurso de Apelación',tinta:'¡Tinta Derramada!'};
-let S=null,done=new Set(),started=false;
-$('url').textContent=location.host;
-s.emit('create');
-s.on('code',c=>$('code').textContent=c);
-s.on('state',st=>{S=st;render()});
-$('start').onclick=()=>s.emit('start');
-function show(id){['lobby','q','end'].forEach(x=>$(x).classList.toggle('hide',x!==id))}
+const FX={protesto:'¡PROTESTO!',pista:'PISTA ANÓNIMA',dictamen:'DICTAMEN',apelacion:'APELACIÓN',tinta:'¡TINTA!'};
+const COL={A:'#2f6fd6',B:'#d33a40'},HAIR=['#2b1b10','#7a4a21','#d6b24a','#8a8a8a','#b5412b'],esc=t=>String(t).replace(/[&<>"']/g,c=>'&#'+c.charCodeAt(0)+';');
+const PROP={principal:'<rect x="1" y="56" width="16" height="11" rx="2" fill="#6b4423"/><path d="M6 56v-3h6v3" stroke="#3a2412" stroke-width="2" fill="none"/>',investigador:'<circle cx="8" cy="50" r="7" fill="#bfe6ff" stroke="#333" stroke-width="2"/><path d="M13 55l6 8" stroke="#333" stroke-width="3"/>',perito:'<path d="M8 44h6v9l6 12H2l6-12z" fill="#6cf1a0" stroke="#2a6" stroke-width="1.5"/>',procurador:'<rect x="1" y="48" width="16" height="20" fill="#fff" stroke="#999"/><path d="M4 54h10M4 59h10M4 64h7" stroke="#999"/>',escribano:'<path d="M4 68L18 44" stroke="#eee" stroke-width="3"/><path d="M18 44q6 2 4 10q-6-2-4-10z" fill="#fff" stroke="#999"/>'};
+const QUIPS={think:['Silencio en la sala…','Que el jurado ponga atención.','Siento un olor a condena.'],happy:['¡Qué buen espectáculo!','Anótese: justicia servida.','Me alegra la tarde.'],angry:['¡ORDEN EN LA SALA!','¡Esto es un escándalo!','¡Años de cárcel para todos!'],neutral:['Se continúa la audiencia.','Anotado en el expediente.','Mmm… interesante.']};
+const CATS=['cultura','ciencia','derecho','historia','deportes','arte','entretenimiento'];
+const PACK=[['cultura','¿Capital de Francia?',['Roma','París','Madrid','Berlín'],1],['ciencia','¿Qué planeta es el planeta rojo?',['Venus','Marte','Júpiter','Mercurio'],1],['derecho','¿Quién dicta la sentencia en un juicio?',['El fiscal','El juez','El testigo','El jurado'],1],['historia','¿En qué año cayó el Muro de Berlín?',['1979','1989','1999','1969'],1],['deportes','¿Cuántos jugadores juegan en cancha por equipo en fútbol?',['9','10','11','12'],2],['ciencia','¿Cuál es el símbolo químico del agua?',['O2','H2O','CO2','HO'],1],['arte','¿Quién pintó La Gioconda?',['Rafael','Leonardo da Vinci','Miguel Ángel','Goya'],1],['cultura','¿Cuál es el océano más grande?',['Atlántico','Índico','Pacífico','Ártico'],2]].map(x=>({categoria:x[0],pregunta:x[1],opciones:x[2],correcta:x[3]}));
+let S=null,st={},QL=[],ed=-1;
+$('url').textContent=location.host;$('fc').innerHTML=CATS.map(c=>`<option>${c}</option>`).join('');
+const say=m=>$('bubble').textContent=QUIPS[m][Math.random()*QUIPS[m].length|0];
+function mood(m,slam){const j=$('judgeSvg');j.setAttribute('class','mood-'+m);say(m);if(slam){j.getBoundingClientRect();j.setAttribute('class','mood-'+m+' slam')}}
+const zone=y=>y<30?'Libertad condicional':y<60?'Prisión preventiva':y<90?'Máxima seguridad':'Pena de muerte cómica';
+function doll(p){const c=st[p.id]||'',k=COL[p.team],h=HAIR[[...p.id].reduce((a,x)=>a+x.charCodeAt(0),0)%5];
+ return `<div class="pl ${c}"><svg viewBox="0 0 60 84" class="doll"><ellipse cx="30" cy="80" rx="23" ry="4" fill="#0006"/><g class="bod"><rect x="14" y="42" width="32" height="34" rx="10" fill="${k}"/><path d="M30 44l-4 7 4 14 4-14z" fill="#d4a82a"/><circle cx="30" cy="26" r="17" fill="#f1c9a0"/><path d="M13 25Q12 6 30 6Q48 6 47 25Q40 13 30 14Q20 13 13 25z" fill="${h}"/><circle cx="23" cy="25" r="2.3" fill="#14211c"/><circle cx="37" cy="25" r="2.3" fill="#14211c"/><path d="M22 34h16M25 32v4M29 32v4M33 32v4M37 32v4" stroke="#14211c" stroke-width="1.5" fill="none"/>${PROP[p.role]}</g><g class="arm"><path d="M46 52l8-14" stroke="${k}" stroke-width="7" stroke-linecap="round"/><circle cx="54" cy="36" r="4" fill="#f1c9a0"/></g>${c=='bad'?'<path d="M46 12q4 6 0 9q-4-3 0-9z" fill="#6cc4ff"/>':''}</svg><div class="nm">${esc(p.name)}${p.streak>1?' 🔥'+p.streak:''}<small>${RN[p.role][0]} ${RN[p.role][1]}</small></div></div>`}
 function render(){
- ['A','B'].forEach(t=>{
-  $('t'+t).innerHTML='<h2 class="slab">'+(t=='A'?'Equipo Azul':'Equipo Rojo')+'</h2>'+S.players.filter(p=>p.team==t).map(p=>
-   `<div class="lawyer ${done.has(p.id)?'done':''}"><span style="font-size:30px">${RN[p.role][0]}</span><div>${p.name}<small>${RN[p.role][1]}</small></div><em>${p.streak>1?'🔥'+p.streak:''}</em></div>`).join('')});
- ['A','B'].forEach(t=>{const y=S.years[t];$('b'+t).firstElementChild.style.width=y+'%';$('b'+t).lastElementChild.textContent=(t=='A'?'Equipo Azul: ':'Equipo Rojo: ')+y+' años'});
+ ['A','B'].forEach(t=>{$('t'+t).innerHTML='<div class="flag slab">'+(t=='A'?'LA DEFENSA':'LA FISCALÍA')+'</div>'+S.players.filter(p=>p.team==t).map(doll).join('');
+  const y=S.years[t],b=$('b'+t);b.querySelector('i').style.width=y+'%';b.querySelector('b').textContent=y+' años';b.querySelector('.zn').textContent=zone(y)});
+ $('chips').innerHTML=S.players.length?S.players.map(p=>`<span class="${p.team}">${esc(p.name)}</span>`).join(''):'<i>Esperando abogados…</i>';
 }
-s.on('question',d=>{
- started=true;done.clear();show('q');$('res').textContent='';
- $('rd').textContent='Ronda '+d.round+' de '+d.rounds+' · Fase '+['Alegatos','Pruebas','Veredicto'][d.B-1];
+const show=id=>['lobby','q','end'].forEach(x=>$(x).classList.toggle('hide',x!==id));
+s.emit('create');
+s.on('code',c=>{$('code').textContent=c;let v=null;try{v=JSON.parse(localStorage.getItem('am_q'))}catch(e){}
+ QL=Array.isArray(v)&&v.length?v:PACK.slice();commit()});
+s.on('state',x=>{S=x;render()});
+$('start').onclick=()=>{mood('neutral');s.emit('start')};
+// ---- Expediente de preguntas ----
+function commit(){try{localStorage.setItem('am_q',JSON.stringify(QL))}catch(e){}if(QL.length)s.emit('setq',JSON.stringify(QL));listQ()}
+function listQ(){$('qn').textContent=QL.length;
+ $('ql').innerHTML=QL.map((q,i)=>`<li class="${i==ed?'sel':''}"><b>${i+1}</b><div><span class="chip">${esc(q.categoria||'')}</span>${esc(q.pregunta||'')}<small>✔ ${esc((q.opciones||[])[q.correcta]||'?')}</small></div><button class="alt" data-e="${i}" title="Editar">✎</button><button data-d="${i}" title="Borrar">✕</button></li>`).join('')||'<li class="emp">Aún no hay preguntas. Escribe la primera →</li>';
+ $('qcount').textContent=QL.length+' pregunta(s)'+(QL.length&&QL.length<13?' · se repetirán para completar las 13 rondas':'')}
+const msg=(t,ok)=>{$('qmsg').style.color=ok?'#2e7d4f':'#c1272d';$('qmsg').textContent=t};
+function clearF(){ed=-1;$('fq').value='';[0,1,2,3].forEach(i=>$('fo'+i).value='');document.querySelector('input[name=fr][value="0"]').checked=true;$('fadd').textContent='➕ Agregar pregunta';$('fcan').classList.add('hide')}
+$('edit').onclick=()=>{$('ed').classList.remove('hide');listQ()};$('edx').onclick=()=>{$('ed').classList.add('hide');clearF()};
+document.addEventListener('keydown',e=>{if(e.key=='Escape')$('edx').click()});
+$('ql').onclick=e=>{const b=e.target.closest('button');if(!b)return;
+ if(b.dataset.d!==undefined){QL.splice(+b.dataset.d,1);clearF();commit();msg(QL.length?'Pregunta borrada':'Sin preguntas: se usarán las del juego',true)}
+ else{ed=+b.dataset.e;const q=QL[ed];$('fc').value=q.categoria;$('fq').value=q.pregunta;[0,1,2,3].forEach(i=>$('fo'+i).value=q.opciones[i]||'');
+  document.querySelector('input[name=fr][value="'+q.correcta+'"]').checked=true;$('fadd').textContent='💾 Guardar cambios';$('fcan').classList.remove('hide');listQ()}};
+$('fcan').onclick=()=>{clearF();listQ()};
+$('fadd').onclick=()=>{const q=$('fq').value.trim(),raw=[0,1,2,3].map(i=>$('fo'+i).value.trim()),cor=+document.querySelector('input[name=fr]:checked').value;
+ if(!q)return msg('Escribe la pregunta');if(!raw[cor])return msg('Marca como correcta una opción que no esté vacía');
+ const opciones=raw.filter(Boolean);if(opciones.length<2)return msg('Pon al menos 2 opciones');
+ const item={categoria:$('fc').value,pregunta:q,opciones,correcta:raw.slice(0,cor).filter(Boolean).length};
+ ed>=0?QL[ed]=item:QL.push(item);clearF();commit();msg('Guardada ✔',true)};
+$('fpack').onclick=()=>{QL=PACK.slice();clearF();commit();msg('Pack de ejemplo cargado',true)};
+$('jexp').onclick=()=>$('fj').value=JSON.stringify(QL,null,1);
+$('jimp').onclick=()=>{try{const a=JSON.parse($('fj').value);if(!Array.isArray(a)||!a.length)throw Error('Debe ser una lista con preguntas');QL=a;clearF();commit();msg('JSON cargado ✔',true)}catch(e){msg('JSON inválido: '+e.message)}};
+s.on('qok',n=>msg('✔ '+n+' preguntas listas en la sala',true));s.on('qerr',m=>msg('✖ '+m));
+// ---- Partida ----
+let tick;
+s.on('question',d=>{st={};show('q');$('res').textContent='';mood('think');
+ $('rd').textContent='Ronda '+d.round+'/'+d.rounds+' · '+['Alegatos','Pruebas','Veredicto'][d.B-1]+' ×'+d.B;
  $('cat').textContent='Categoría: '+d.cat;$('qt').textContent=d.text;
- $('opts').innerHTML=d.opts.map((o,i)=>`<div class="opt">${'▲◆●■'[i]} ${o}</div>`).join('');
- const b=$('tbar').firstElementChild;b.style.transition='none';b.style.width='100%';b.offsetWidth;b.style.transition='width '+d.time+'s linear';b.style.width='0';
- $('judge').textContent='🧐';
-});
-s.on('answered',id=>{done.add(id);render()});
-s.on('result',d=>{
+ $('opts').innerHTML=d.opts.map((o,i)=>`<div class="opt">${'▲◆●■'[i]} ${esc(o)}</div>`).join('');
+ const r=$('ringc');r.style.transition='none';r.style.strokeDashoffset=0;r.getBoundingClientRect();r.style.transition='stroke-dashoffset '+d.time+'s linear';r.style.strokeDashoffset=138.2;
+ const t0=Date.now();clearInterval(tick);tick=setInterval(()=>{$('sec').textContent=Math.max(0,Math.ceil(d.time-(Date.now()-t0)/1000))},200);$('sec').textContent=d.time;render()});
+s.on('answered',id=>{st[id]='done';render()});
+s.on('result',d=>{clearInterval(tick);
  [...$('opts').children].forEach((el,i)=>el.classList.add(i==d.correct?'yes':'no'));
  $('res').textContent='Condena: Azul +'+d.dmg.A+' · Rojo +'+d.dmg.B+' años';
- $('judge').textContent='🔨';$('judge').classList.remove('hit');$('judge').offsetWidth;$('judge').classList.add('hit');
-});
-s.on('fx',f=>{const t=$('toast');t.textContent=FX[f.k]+' — '+f.name;t.style.background=f.team=='A'?'#7fa8ec':'#ee8b8f';t.classList.add('on');setTimeout(()=>t.classList.remove('on'),2200)});
-s.on('end',e=>{show('end');$('judge').textContent=e.winner=='EMPATE'?'🤷':'🏛️';
- $('win').textContent=e.winner=='EMPATE'?'Empate en el tribunal':(e.perpetua?'Cadena perpetua para el equipo '+(e.winner=='A'?'Rojo':'Azul')+'. ':'')+'Gana el equipo '+(e.winner=='A'?'Azul':'Rojo');
- $('sub').textContent='Condenas finales — Azul: '+e.years.A+' años · Rojo: '+e.years.B+' años'});
+ Object.keys(d.det).forEach(id=>st[id]=d.det[id].ok?'ok':'bad');
+ const m=Math.max(d.dmg.A,d.dmg.B);mood(m>=8?'angry':m<4?'happy':'neutral',true);render()});
+s.on('fx',f=>{const e=$('stamp');e.innerHTML=FX[f.k]+'<small>'+esc(f.name)+'</small>';e.style.borderColor=COL[f.team];e.classList.remove('on');e.getBoundingClientRect();e.classList.add('on')});
+s.on('end',e=>{show('end');mood(e.perpetua?'angry':'happy',true);
+ $('win').textContent=e.winner=='EMPATE'?'EMPATE':'GANA '+(e.winner=='A'?'LA DEFENSA':'LA FISCALÍA');
+ $('sub').textContent=(e.perpetua?'¡Cadena perpetua para '+(e.winner=='A'?'la Fiscalía':'la Defensa')+'! ':'')+'Condenas finales — Azul: '+e.years.A+' años · Rojo: '+e.years.B+' años'});
 </script></body></html>
